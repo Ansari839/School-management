@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Menu() {
   const styles = {
-    container: "mt-4 text-sm",
+    container: "mt-4 text-sm bg-white",
     section: {
       base: "flex flex-col gap-2 px-2",
       title: "hidden lg:block text-gray-400 font-light",

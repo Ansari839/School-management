@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import {
   RadialBarChart,
@@ -34,7 +35,7 @@ export default function CountCharts() {
       </div>
 
       {/* Chart */}
-      {/* <div className="w-full h-[75%]">
+      <div className="w-full h-[75%]">
         <ResponsiveContainer width="100%" height="100%">
           <RadialBarChart
             cx="50%"
@@ -59,22 +60,99 @@ export default function CountCharts() {
             />
           </RadialBarChart>
         </ResponsiveContainer>
-      </div> */}
+      </div>
 
       {/* Bottom Stats */}
       <div className="flex justify-center gap-16">
         <div className="flex flex-col gap-1 items-center">
           <div className="w-10 h-10 bg-primary rounded-full" />
           <h1 className="font-bold">1,234</h1>
-          <h2 className="text-xs text-gray-300">Boys (55%)</h2>
+          <h2 className="text-xs text-gray-500">Boys (55%)</h2>
         </div>
 
         <div className="flex flex-col gap-1 items-center">
           <div className="w-10 h-10 bg-main rounded-full" />
           <h1 className="font-bold">1,234</h1>
-          <h2 className="text-xs text-gray-300">Girls (45%)</h2>
+          <h2 className="text-xs text-gray-500">Girls (45%)</h2>
         </div>
       </div>
     </div>
   );
 }
+
+
+// import React, { PureComponent } from 'react';
+// import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
+
+// const data = [
+//   {
+//     name: '18-24',
+//     uv: 31.47,
+//     pv: 2400,
+//     fill: '#8884d8',
+//   },
+//   {
+//     name: '25-29',
+//     uv: 26.69,
+//     pv: 4567,
+//     fill: '#83a6ed',
+//   },
+//   {
+//     name: '30-34',
+//     uv: 15.69,
+//     pv: 1398,
+//     fill: '#8dd1e1',
+//   },
+//   {
+//     name: '35-39',
+//     uv: 8.22,
+//     pv: 9800,
+//     fill: '#82ca9d',
+//   },
+//   {
+//     name: '40-49',
+//     uv: 8.63,
+//     pv: 3908,
+//     fill: '#a4de6c',
+//   },
+//   {
+//     name: '50+',
+//     uv: 2.63,
+//     pv: 4800,
+//     fill: '#d0ed57',
+//   },
+//   {
+//     name: 'unknow',
+//     uv: 6.67,
+//     pv: 4800,
+//     fill: '#ffc658',
+//   },
+// ];
+
+// const style = {
+//   top: '50%',
+//   right: 0,
+//   transform: 'translate(0, -50%)',
+//   lineHeight: '24px',
+// };
+
+// export default class CountCharts extends PureComponent {
+//   static demoUrl = 'https://codesandbox.io/p/sandbox/simple-radial-bar-chart-gnwjjg';
+
+//   render() {
+//     return (
+//       <ResponsiveContainer width="100%" height="100%">
+//         <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data}>
+//           <RadialBar
+//             minAngle={15}
+//             label={{ position: 'insideStart', fill: '#fff' }}
+//             background
+//             clockWise
+//             dataKey="uv"
+//           />
+//           <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={style} />
+//         </RadialBarChart>
+//       </ResponsiveContainer>
+//     );
+//   }
+// }
