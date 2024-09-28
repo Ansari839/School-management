@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import {
   RadialBarChart,
@@ -9,14 +9,10 @@ import {
 
 // Sample data
 const data = [
-  { name: "18-24", uv: 31.47, pv: 2400, fill: "#8884d8" },
-  { name: "25-29", uv: 26.69, pv: 4567, fill: "#83a6ed" },
-  { name: "30-34", uv: 15.69, pv: 1398, fill: "#8dd1e1" },
-  { name: "35-39", uv: 8.22, pv: 9800, fill: "#82ca9d" },
-  { name: "40-49", uv: 8.63, pv: 3908, fill: "#a4de6c" },
-  { name: "50+", uv: 2.63, pv: 4800, fill: "#d0ed57" },
-  { name: "unknown", uv: 6.67, pv: 4800, fill: "#ffc658" },
-];
+  { name: "Total", count: 106,  fill: "white" },
+  { name: "Boys", count: 53,  fill: "#d1aae7" },
+  { name: "Girls", count: 53, fill: "#ede42d" },
+  ];
 
 const style = {
   top: "50%",
@@ -35,44 +31,37 @@ export default function CountCharts() {
       </div>
 
       {/* Chart */}
-      <div className="w-full h-[75%]">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="w-full h-[75%] relative">
+        <ResponsiveContainer>
           <RadialBarChart
             cx="50%"
             cy="50%"
-            innerRadius="10%"
-            outerRadius="80%"
-            barSize={10}
+            innerRadius="40%"
+            outerRadius="100%"
+            barSize={32}
             data={data}
           >
             <RadialBar
-              minAngle={15}
               label={{ position: "insideStart", fill: "#fff" }}
               background
-              clockWise
-              dataKey="uv"
-            />
-            <Legend
-              iconSize={10}
-              layout="vertical"
-              verticalAlign="middle"
-              wrapperStyle={style}
+              dataKey="count"
             />
           </RadialBarChart>
         </ResponsiveContainer>
+        <Image src='/maleFemale.png' width={50} height={50} alt="male female" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 " />
       </div>
 
       {/* Bottom Stats */}
       <div className="flex justify-center gap-16">
         <div className="flex flex-col gap-1 items-center">
           <div className="w-10 h-10 bg-primary rounded-full" />
-          <h1 className="font-bold">1,234</h1>
+          <h1 className="font-bold text-black">1,234</h1>
           <h2 className="text-xs text-gray-500">Boys (55%)</h2>
         </div>
 
         <div className="flex flex-col gap-1 items-center">
           <div className="w-10 h-10 bg-main rounded-full" />
-          <h1 className="font-bold">1,234</h1>
+          <h1 className="font-bold text-black">1,234</h1>
           <h2 className="text-xs text-gray-500">Girls (45%)</h2>
         </div>
       </div>
@@ -80,79 +69,3 @@ export default function CountCharts() {
   );
 }
 
-
-// import React, { PureComponent } from 'react';
-// import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
-
-// const data = [
-//   {
-//     name: '18-24',
-//     uv: 31.47,
-//     pv: 2400,
-//     fill: '#8884d8',
-//   },
-//   {
-//     name: '25-29',
-//     uv: 26.69,
-//     pv: 4567,
-//     fill: '#83a6ed',
-//   },
-//   {
-//     name: '30-34',
-//     uv: 15.69,
-//     pv: 1398,
-//     fill: '#8dd1e1',
-//   },
-//   {
-//     name: '35-39',
-//     uv: 8.22,
-//     pv: 9800,
-//     fill: '#82ca9d',
-//   },
-//   {
-//     name: '40-49',
-//     uv: 8.63,
-//     pv: 3908,
-//     fill: '#a4de6c',
-//   },
-//   {
-//     name: '50+',
-//     uv: 2.63,
-//     pv: 4800,
-//     fill: '#d0ed57',
-//   },
-//   {
-//     name: 'unknow',
-//     uv: 6.67,
-//     pv: 4800,
-//     fill: '#ffc658',
-//   },
-// ];
-
-// const style = {
-//   top: '50%',
-//   right: 0,
-//   transform: 'translate(0, -50%)',
-//   lineHeight: '24px',
-// };
-
-// export default class CountCharts extends PureComponent {
-//   static demoUrl = 'https://codesandbox.io/p/sandbox/simple-radial-bar-chart-gnwjjg';
-
-//   render() {
-//     return (
-//       <ResponsiveContainer width="100%" height="100%">
-//         <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data}>
-//           <RadialBar
-//             minAngle={15}
-//             label={{ position: 'insideStart', fill: '#fff' }}
-//             background
-//             clockWise
-//             dataKey="uv"
-//           />
-//           <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={style} />
-//         </RadialBarChart>
-//       </ResponsiveContainer>
-//     );
-//   }
-// }
