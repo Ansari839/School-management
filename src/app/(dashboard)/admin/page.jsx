@@ -25,18 +25,18 @@ export default function AdminPage() {
           </div>
           {/* Attendance Chart */}
           <div className="w-full lg:w-2/3 h-[450px]">
-          <AttendanceChart />
+            <AttendanceChart />
           </div>
         </div>
         {/* Bottom Chart */}
         <div className="w-full h-[500px]">
-            <FinanceChart />
-          </div>
+          <FinanceChart />
+        </div>
       </div>
       {/* Right */}
       <div className="w-full lg:w-1/3 flex flex-col gap-8">
-      <EventCalender />
-      <Announcement />
+        <EventCalender />
+        <Announcement />
       </div>
     </div>
   );

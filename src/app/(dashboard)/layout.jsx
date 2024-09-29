@@ -11,7 +11,7 @@ export default function DashboardLayout({ children }) {
       responsive: "w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%]", // Responsive widths
       colors: "bg-white", // Color for the left side
       logo: "flex items-center justify-center lg:justify-start gap-2", // Flex layout for the logo
-      logoText: "hidden lg:block text-slate-900", // Hide text on small screens, show on larger
+      logoText: "hidden lg:block text-slate-900 font-bold", // Hide text on small screens, show on larger
     },
     right: {
       responsive: "w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] overflow-scroll", // Responsive widths

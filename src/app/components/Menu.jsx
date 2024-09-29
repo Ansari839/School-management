@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { role } from "../lib/data";
 
 export default function Menu() {
   const styles = {
     container: "mt-4 text-sm bg-white",
     section: {
       base: "flex flex-col gap-2 px-2",
-      title: "hidden lg:block text-gray-400 font-light",
+      title: "hidden lg:block text-gray-400 font-light py-4",
     },
     item: {
-      link: "flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-1.5",
+      link: "flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-1.5 rounded-md hover:bg-primary",
       title: "hidden lg:block",
       iconSize: 20, // Setting the size here for consistency
     },
@@ -136,21 +137,25 @@ export default function Menu() {
       {menuItems.map((i) => (
         <div className={styles.section.base} key={i.title}>
           <span className={styles.section.title}>{i.title}</span>
-          {i.items.map((item) => (
-            <Link
-              href={item.href}
-              key={item.label}
-              className={styles.item.link}
-            >
-              <Image
-                src={item.icon}
-                alt={item.label}
-                width={styles.item.iconSize}
-                height={styles.item.iconSize}
-              />
-              <span className={styles.item.title}>{item.label}</span>
-            </Link>
-          ))}
+          {i.items.map((item) => {
+            if (item.visible.includes(role)){
+             return (
+              <Link
+                href={item.href}
+                key={item.label}
+                className={styles.item.link}
+              >
+                <Image
+                  src={item.icon}
+                  alt={item.label}
+                  width={styles.item.iconSize}
+                  height={styles.item.iconSize}
+                />
+                <span className={styles.item.title}>{item.label}</span>
+              </Link>
+            )
+            }
+          })}
         </div>
       ))}
     </div>

@@ -29,7 +29,7 @@ export default function EventCalender() {
   return (
     <div className="bg-white rounded-md">
       <Calendar onChange={onChange} value={value} />
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center p-4">
         <h1 className="text-xl font-semibold text-black my-4">Events</h1>
         <Image src="/moreDark.png" alt="more" width={20} height={20} />
       </div>

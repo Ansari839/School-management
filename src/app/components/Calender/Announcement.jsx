@@ -32,7 +32,7 @@ export default function Announcement() {
       {/* Mapping through announcements */}
       {announcements.map((announcement, index) => (
         <div key={index} className="flex flex-col gap-4 mt-4">
-          <div className="bg-primary rounded-md p-4">
+          <div className="odd:bg-primary even:bg-main rounded-md p-4">
             <div className="flex items-center justify-between">
               <h2>{announcement.title}</h2>
               <span className="text-xs text-gray-400 bg-white rounded-md px-1 py-1">
