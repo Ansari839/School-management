@@ -1,3 +1,4 @@
+'use client'
 import Announcement from "@/app/components/Calender/Announcement";
 import BigCalendar from "@/app/components/Calender/BigCalendar";
 import EventCalender from "@/app/components/Calender/EventCalender";
