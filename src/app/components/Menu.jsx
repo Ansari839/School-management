@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { role } from "../lib/data";
 
 export default function Menu() {
   const styles = {
-    container: "mt-4 text-sm",
+    container: "mt-4 text-sm bg-white",
     section: {
       base: "flex flex-col gap-2 px-2",
-      title: "hidden lg:block text-gray-400 font-light",
+      title: "hidden lg:block text-gray-400 font-light py-4",
     },
     item: {
-      link: "flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-1.5",
+      link: "flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-1.5 rounded-md hover:bg-primary",
       title: "hidden lg:block",
       iconSize: 20, // Setting the size here for consistency
     },
@@ -29,79 +30,79 @@ export default function Menu() {
         {
           icon: "/teacher.png",
           label: "Teachers",
-          href: "/list/teachers",
+          href: "/dashboard/teacher",
           visible: ["admin", "teacher"],
         },
         {
           icon: "/student.png",
           label: "Students",
-          href: "/list/students",
+          href: "/dashboard/student",
           visible: ["admin", "teacher"],
         },
         {
           icon: "/parent.png",
           label: "Parents",
-          href: "/list/parents",
+          href: "/dashboard/parent",
           visible: ["admin", "teacher"],
         },
         {
           icon: "/subject.png",
           label: "Subjects",
-          href: "/list/subjects",
+          href: "/dashboard/subject",
           visible: ["admin"],
         },
         {
           icon: "/class.png",
           label: "Classes",
-          href: "/list/classes",
+          href: "/dashboard/classes",
           visible: ["admin", "teacher"],
         },
         {
           icon: "/lesson.png",
           label: "Lessons",
-          href: "/list/lessons",
+          href: "/dashboard/lessons",
           visible: ["admin", "teacher"],
         },
         {
           icon: "/exam.png",
           label: "Exams",
-          href: "/list/exams",
+          href: "/dashboard/exams",
           visible: ["admin", "teacher", "student", "parent"],
         },
         {
           icon: "/assignment.png",
           label: "Assignments",
-          href: "/list/assignments",
+          href: "/dashboard/assignments",
           visible: ["admin", "teacher", "student", "parent"],
         },
         {
           icon: "/result.png",
           label: "Results",
-          href: "/list/results",
+          href: "/dashboard/results",
           visible: ["admin", "teacher", "student", "parent"],
         },
         {
           icon: "/attendance.png",
           label: "Attendance",
-          href: "/list/attendance",
+          href: "/dashboard/attendance",
           visible: ["admin", "teacher", "student", "parent"],
         },
         {
           icon: "/calendar.png",
           label: "Events",
-          href: "/list/events",
+          href: "/dashboard/events",
           visible: ["admin", "teacher", "student", "parent"],
         },
         {
           icon: "/message.png",
           label: "Messages",
-          href: "/list/messages",
+          href: "/dashboard/messages",
           visible: ["admin", "teacher", "student", "parent"],
         },
         {
           icon: "/announcement.png",
           label: "Announcements",
-          href: "/list/announcements",
+          href: "/dashboard/announcements",
           visible: ["admin", "teacher", "student", "parent"],
         },
       ],
@@ -136,21 +137,25 @@ export default function Menu() {
       {menuItems.map((i) => (
         <div className={styles.section.base} key={i.title}>
           <span className={styles.section.title}>{i.title}</span>
-          {i.items.map((item) => (
-            <Link
-              href={item.href}
-              key={item.label}
-              className={styles.item.link}
-            >
-              <Image
-                src={item.icon}
-                alt={item.label}
-                width={styles.item.iconSize}
-                height={styles.item.iconSize}
-              />
-              <span className={styles.item.title}>{item.label}</span>
-            </Link>
-          ))}
+          {i.items.map((item) => {
+            if (item.visible.includes(role)){
+             return (
+              <Link
+                href={item.href}
+                key={item.label}
+                className={styles.item.link}
+              >
+                <Image
+                  src={item.icon}
+                  alt={item.label}
+                  width={styles.item.iconSize}
+                  height={styles.item.iconSize}
+                />
+                <span className={styles.item.title}>{item.label}</span>
+              </Link>
+            )
+            }
+          })}
         </div>
       ))}
     </div>

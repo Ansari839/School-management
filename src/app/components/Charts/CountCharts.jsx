@@ -1,78 +1,92 @@
+"use client";
 import Image from "next/image";
 import {
   RadialBarChart,
   RadialBar,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 
 // Sample data
 const data = [
-  { name: "18-24", uv: 31.47, pv: 2400, fill: "#8884d8" },
-  { name: "25-29", uv: 26.69, pv: 4567, fill: "#83a6ed" },
-  { name: "30-34", uv: 15.69, pv: 1398, fill: "#8dd1e1" },
-  { name: "35-39", uv: 8.22, pv: 9800, fill: "#82ca9d" },
-  { name: "40-49", uv: 8.63, pv: 3908, fill: "#a4de6c" },
-  { name: "50+", uv: 2.63, pv: 4800, fill: "#d0ed57" },
-  { name: "unknown", uv: 6.67, pv: 4800, fill: "#ffc658" },
+  { name: "Total", count: 106, fill: "white" },
+  { name: "Boys", count: 59, fill: "#d1aae7" },
+  { name: "Girls", count: 47, fill: "#ede42d" },
 ];
 
-const style = {
-  top: "50%",
-  right: 0,
-  transform: "translate(0, -50%)",
-  lineHeight: "24px",
+// Styles definition
+const styles = {
+  container: "bg-white rounded-xl w-full h-full p-4",
+  header: {
+    container: "flex justify-between items-center",
+    title: "text-lg font-semibold text-black",
+    iconSize: 20,
+  },
+  chartWrapper: "w-full h-[75%] relative",
+  chartCenterIcon: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+  statsContainer: "flex justify-center gap-16",
+  statItem: {
+    container: "flex flex-col gap-1 items-center",
+    circleSize: "w-10 h-10 rounded-full",
+    number: "font-bold text-black",
+    label: "text-xs text-gray-500",
+  },
 };
 
 export default function CountCharts() {
   return (
-    <div className="bg-white rounded-xl w-full h-full p-4">
+    <div className={styles.container}>
       {/* Title */}
-      <div className="flex justify-between items-center ">
-        <h1 className="text-lg font-semibold">Students</h1>
-        <Image src="/moreDark.png" alt="more" width={20} height={20} />
+      <div className={styles.header.container}>
+        <h1 className={styles.header.title}>Students</h1>
+        <Image
+          src="/moreDark.png"
+          alt="more"
+          width={styles.header.iconSize}
+          height={styles.header.iconSize}
+        />
       </div>
 
       {/* Chart */}
-      {/* <div className="w-full h-[75%]">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className={styles.chartWrapper}>
+        <ResponsiveContainer>
           <RadialBarChart
             cx="50%"
             cy="50%"
-            innerRadius="10%"
-            outerRadius="80%"
-            barSize={10}
+            innerRadius="40%"
+            outerRadius="100%"
+            barSize={32}
             data={data}
           >
             <RadialBar
-              minAngle={15}
               label={{ position: "insideStart", fill: "#fff" }}
               background
-              clockWise
-              dataKey="uv"
-            />
-            <Legend
-              iconSize={10}
-              layout="vertical"
-              verticalAlign="middle"
-              wrapperStyle={style}
+              dataKey="count"
             />
           </RadialBarChart>
         </ResponsiveContainer>
-      </div> */}
+        <Image
+          src="/maleFemale.png"
+          width={50}
+          height={50}
+          alt="male female"
+          className={styles.chartCenterIcon}
+        />
+      </div>
 
       {/* Bottom Stats */}
-      <div className="flex justify-center gap-16">
-        <div className="flex flex-col gap-1 items-center">
-          <div className="w-10 h-10 bg-primary rounded-full" />
-          <h1 className="font-bold">1,234</h1>
-          <h2 className="text-xs text-gray-300">Boys (55%)</h2>
+      <div className={styles.statsContainer}>
+        {/* Boys Stats */}
+        <div className={styles.statItem.container}>
+          <div className={`${styles.statItem.circleSize} bg-primary`} />
+          <h1 className={styles.statItem.number}>1,234</h1>
+          <h2 className={styles.statItem.label}>Boys (55%)</h2>
         </div>
 
-        <div className="flex flex-col gap-1 items-center">
-          <div className="w-10 h-10 bg-main rounded-full" />
-          <h1 className="font-bold">1,234</h1>
-          <h2 className="text-xs text-gray-300">Girls (45%)</h2>
+        {/* Girls Stats */}
+        <div className={styles.statItem.container}>
+          <div className={`${styles.statItem.circleSize} bg-main`} />
+          <h1 className={styles.statItem.number}>1,234</h1>
+          <h2 className={styles.statItem.label}>Girls (45%)</h2>
         </div>
       </div>
     </div>
