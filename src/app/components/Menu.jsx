@@ -30,7 +30,7 @@ export default function Menu() {
         {
           icon: "/teacher.png",
           label: "Teachers",
-          href: "/teacher",
+          href: "/list/teachers",
           visible: ["admin", "teacher"],
         },
         {
