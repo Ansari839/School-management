@@ -36,13 +36,13 @@ export default function Menu() {
         {
           icon: "/student.png",
           label: "Students",
-          href: "/student",
+          href: "/list/students",
           visible: ["admin", "teacher"],
         },
         {
           icon: "/parent.png",
           label: "Parents",
-          href: "/parent",
+          href: "/list/parents",
           visible: ["admin", "teacher"],
         },
         {
@@ -138,22 +138,22 @@ export default function Menu() {
         <div className={styles.section.base} key={i.title}>
           <span className={styles.section.title}>{i.title}</span>
           {i.items.map((item) => {
-            if (item.visible.includes(role)){
-             return (
-              <Link
-                href={item.href}
-                key={item.label}
-                className={styles.item.link}
-              >
-                <Image
-                  src={item.icon}
-                  alt={item.label}
-                  width={styles.item.iconSize}
-                  height={styles.item.iconSize}
-                />
-                <span className={styles.item.title}>{item.label}</span>
-              </Link>
-            )
+            if (item.visible.includes(role)) {
+              return (
+                <Link
+                  href={item.href}
+                  key={item.label}
+                  className={styles.item.link}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    width={styles.item.iconSize}
+                    height={styles.item.iconSize}
+                  />
+                  <span className={styles.item.title}>{item.label}</span>
+                </Link>
+              );
             }
           })}
         </div>
