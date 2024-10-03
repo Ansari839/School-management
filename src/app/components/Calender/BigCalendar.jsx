@@ -57,7 +57,7 @@ export default function BigCalendar() {
       defaultDate={new Date(2024, 7, 12)} // Set the calendar to start on August 12, 2024
       style={{ height: "98%" }}
       onView={handleViewChange}
-      min={new Date(2024, 7, 12, 6, 0, 0)} // 6 AM
+      min={new Date(2024, 7, 12, 8, 0, 0)} // 6 AM
       max={new Date(2024, 7, 12, 18, 0, 0)} // 6 PM
     />
   );

@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }) {
       logoText: "hidden lg:block text-slate-900 font-bold", // Hide text on small screens, show on larger
     },
     right: {
-      responsive: "w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] overflow-scroll", // Responsive widths
+      responsive: "w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] overflow-scroll flex flex-col", // Responsive widths
       colors: "bg-gray-100", // Color for the right side
     },
   };
