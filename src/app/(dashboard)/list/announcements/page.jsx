@@ -1,17 +1,14 @@
 import Pagination from "@/app/components/Pagination";
 import Table from "@/app/components/Table";
 import TableSearch from "@/app/components/TableSearch";
-import { resultsData, role } from "@/app/lib/data";
+import { announcementsData, eventsData, role } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export default function lessonsList() {
   const columns = [
-    { header: "Subject", accessor: "subject" },
-    { header: "Student", accessor: "student" },
-    { header: "Score", accessor: "score", className: "hidden md:table-cell" },
-    {header: "Teacher",accessor: "teacher",className: "hidden md:table-cell"},
+    { header: "Title", accessor: "title" },
     { header: "Class", accessor: "class", className: "hidden md:table-cell"},
     {header: "Date",accessor: "date",className: "hidden md:table-cell",},
     { header: "Actions", accessor: "action" },
@@ -24,10 +21,7 @@ export default function lessonsList() {
         key={item.id}
         className="border-b border-gray-200 even:bg-slate-50 hover:bg-primary "
       >
-        <td className="flex items-center gap-4 p-4">{item.subject}</td>
-        <td className="hidden md:table-cell">{item.student}</td>
-        <td className="hidden md:table-cell">{item.score}</td>
-        <td className="hidden md:table-cell">{item.teacher}</td>
+        <td className="flex items-center gap-4 p-4">{item.title}</td>
         <td className="hidden md:table-cell">{item.class}</td>
         <td className="hidden md:table-cell">{item.date}</td>
         <td>
@@ -72,7 +66,7 @@ export default function lessonsList() {
       </div>
       {/* List */}
       <div>
-        <Table columns={columns} renderRow={renderRow} data={resultsData} />
+        <Table columns={columns} renderRow={renderRow} data={announcementsData} />
       </div>
       {/* Pagination */}
       <div>
