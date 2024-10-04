@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react";
 
 export default function Table({ columns, renderRow, data }) {
   return (
-    <table className='w-full mt-4'>
+    <table className="w-full mt-4">
       <thead>
         <tr>
           {columns.map((col) => (
-            <th key={col.accessor}>
+            <th key={col.accessor} className={`text-left ${col.className}`}>
               {col.header}
             </th>
           ))}
         </tr>
       </thead>
-      <tbody>
-        {data.map((item) => renderRow(item))}
-      </tbody>
+      <tbody>{data.map((item) => renderRow(item))}</tbody>
     </table>
   );
 }
