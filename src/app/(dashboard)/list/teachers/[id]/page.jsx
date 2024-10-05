@@ -1,6 +1,8 @@
 import Announcement from "@/app/components/Calender/Announcement";
 import BigCalendar from "@/app/components/Calender/BigCalendar";
 import PerfomanceChart from "@/app/components/Charts/Perfomance";
+import FormModal from "@/app/components/FormModal";
+import { role } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -54,6 +56,26 @@ export default function TeacherProfile() {
             <div className="w-2/3 flex flex-col justify-between gap-4">
               <div className="flex items-center gap-4">
                 <h1 className="text-xl font-semibold">{teacherInfo.name}</h1>
+                {role === "admin" && (
+                  <FormModal
+                    table="teacher"
+                    type="update"
+                    data={{
+                      id: 1,
+                      username: "deanguerrero",
+                      email: "deanguerrero@gmail.com",
+                      password: "password",
+                      firstName: "Dean",
+                      lastName: "Guerrero",
+                      phone: "+1 234 567 89",
+                      address: "1234 Main St, Anytown, USA",
+                      bloodType: "A+",
+                      dateOfBirth: "2000-01-01",
+                      sex: "male",
+                      img: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                    }}
+                  />
+                )}
                 <p className="text-sm text-gray-500">
                   {teacherInfo.description}
                 </p>

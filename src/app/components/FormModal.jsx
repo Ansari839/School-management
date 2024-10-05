@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import TeacherForm from "../forms/TeacherFrom";
 
-export default function FormModal({ type, id, table }) {
+export default function FormModal({ type, id, table, data }) {
   const [open, setOpen] = useState(false);
   const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
   const bgColor =
@@ -23,7 +24,7 @@ export default function FormModal({ type, id, table }) {
         </button>
       </form>
     ) : (
-      "create or update form"
+      <TeacherForm type="update" />
     );
   };
 
