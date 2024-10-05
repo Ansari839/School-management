@@ -21,14 +21,14 @@ export default function TeacherProfile() {
 
   const cardData = [
     { imgSrc: "/singleAttendance.png", title: "90%", subtitle: "Attendance" },
-    { imgSrc: "/singleBranch.png", title: "2", subtitle: "Branches" },
-    { imgSrc: "/singleLesson.png", title: "6", subtitle: "Lessons" },
-    { imgSrc: "/singleClass.png", title: "6", subtitle: "Classes" },
+    { imgSrc: "/singleBranch.png", title: "6th", subtitle: "Grade" },
+    { imgSrc: "/singleLesson.png", title: "18", subtitle: "Lessons" },
+    { imgSrc: "/singleClass.png", title: "6 A", subtitle: "Class" },
   ];
 
   const shortcuts = [
-    { href: "/", label: "Classes", bgColor: "bg-primarylight" },
-    { href: "/", label: "Students", bgColor: "bg-secondarylight" },
+    { href: "/", label: "Results", bgColor: "bg-primarylight" },
+    { href: "/", label: "Teachers", bgColor: "bg-secondarylight" },
     { href: "/", label: "Lessons", bgColor: "bg-mainlight" },
     { href: "/", label: "Exams", bgColor: "bg-primarylight" },
     { href: "/", label: "Assignments", bgColor: "bg-secondarylight" },
