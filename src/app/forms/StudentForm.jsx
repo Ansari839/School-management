@@ -5,7 +5,7 @@ import teacherSchema from "./schemas/teacherSchema"; // import the schema
 import InputField from "../components/InputFeilds";
 import Image from "next/image";
 
-const TeacherForm = ({ type, data }) => {
+const StudentForm = ({ type, data }) => {
   const {
     register,
     handleSubmit,
@@ -21,7 +21,7 @@ const TeacherForm = ({ type, data }) => {
 
   return (
     <form className="flex flex-col gap-8" onSubmit={onSubmit}>
-      <h1 className="text-xl font-semibold">Create a new teacher</h1>
+      <h1 className="text-xl font-semibold">Create a new Student</h1>
       <span className="text-xs text-gray-400 font-medium">
         Authentication Information
       </span>
@@ -131,4 +131,4 @@ const TeacherForm = ({ type, data }) => {
   );
 };
 
-export default TeacherForm;
+export default StudentForm;

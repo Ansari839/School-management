@@ -64,7 +64,7 @@ export default function TeacherProfile() {
                       id: 1,
                       username: "deanguerrero",
                       email: "deanguerrero@gmail.com",
-                      password: "password",
+                      password: "password", 
                       firstName: "Dean",
                       lastName: "Guerrero",
                       phone: "+1 234 567 89",

@@ -2,8 +2,13 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import TeacherForm from "../forms/TeacherFrom";
+import StudentForm from "../forms/StudentForm";
 
 export default function FormModal({ type, id, table, data }) {
+  const forms = {
+    teacher : <TeacherForm type={type} data={data} />,
+    student : <StudentForm type={type} data={data} />
+  }
   const [open, setOpen] = useState(false);
   const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
   const bgColor =
@@ -23,8 +28,10 @@ export default function FormModal({ type, id, table, data }) {
           Delete
         </button>
       </form>
-    ) : (
-      <TeacherForm type="update" />
+    ) : type === "create" || type === "update" ?(
+      forms[table]
+    ) :(
+      "Form Not Found"
     );
   };
 
