@@ -14,7 +14,7 @@ export default function TeacherProfile() {
     profileImage:
       "https://images.pexels.com/photos/2888150/pexels-photo-2888150.jpeg?auto=compress&cs=tinysrgb&w=1200",
     details: [
-      { icon: "/blood.png", label: "A+", alt: "Blood Group" },
+      { icon: "/blood.png", label: "AB+", alt: "Blood Group" },
       { icon: "/date.png", label: "June 2025", alt: "Date" },
       { icon: "/mail.png", label: "user@gmail.com", alt: "Email" },
       { icon: "/phone.png", label: "+92 331-8899779", alt: "Phone" },
@@ -64,7 +64,7 @@ export default function TeacherProfile() {
                       id: 1,
                       username: "deanguerrero",
                       email: "deanguerrero@gmail.com",
-                      password: "password", 
+                      password: "password",
                       firstName: "Dean",
                       lastName: "Guerrero",
                       phone: "+1 234 567 89",

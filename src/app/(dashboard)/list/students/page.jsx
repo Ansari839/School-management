@@ -56,15 +56,12 @@ export default function StudentList() {
         <td className="hidden md:table-cell">{item.address}</td>
         <td>
           <div className="flex items-center gap-2">
-            <Link href={`/list/teachers/${item.id}`}>
+            <Link href={`/list/students/${item.id}`}>
               <button className="w-7 h-7 flex items-center justify-center rounded-full bg-primary">
                 <Image src="/view.png" alt="view" width={16} height={16} />
               </button>
             </Link>
             {role === "admin" && (
-              // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-secondary">
-              //   <Image src="/delete.png" alt="delete" width={16} height={16} />
-              // </button>
               <FormModal type="delete" table="student" id={item.id} />
             )}
           </div>

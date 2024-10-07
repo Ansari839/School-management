@@ -9,10 +9,10 @@ import React from "react";
 
 export default function StudentProfile() {
   const studentInfo = {
-    name: "Abdullah",
+    name: "Salaar",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     profileImage:
-      "https://images.pexels.com/photos/2888150/pexels-photo-2888150.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/428328/pexels-photo-428328.jpeg?auto=compress&cs=tinysrgb&w=1200",
     details: [
       { icon: "/blood.png", label: "A+", alt: "Blood Group" },
       { icon: "/date.png", label: "June 2025", alt: "Date" },
@@ -47,7 +47,7 @@ export default function StudentProfile() {
             <div className="w-1/3">
               <Image
                 src={studentInfo.profileImage}
-                alt="Teacher Profile"
+                alt="Student Profile"
                 width={144}
                 height={144}
                 className="w-40 h-36 rounded-full object-cover"
@@ -64,7 +64,7 @@ export default function StudentProfile() {
                       id: 1,
                       username: "Moiz",
                       email: "deanguerrero@gmail.com",
-                      password: "password", 
+                      password: "password",
                       firstName: "Dean",
                       lastName: "Guerrero",
                       phone: "+1 234 567 89",
