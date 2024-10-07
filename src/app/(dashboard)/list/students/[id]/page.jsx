@@ -7,14 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function TeacherProfile() {
-  const teacherInfo = {
-    name: "Abdullah",
+export default function StudentProfile() {
+  const studentInfo = {
+    name: "Salaar",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     profileImage:
-      "https://images.pexels.com/photos/2888150/pexels-photo-2888150.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/428328/pexels-photo-428328.jpeg?auto=compress&cs=tinysrgb&w=1200",
     details: [
-      { icon: "/blood.png", label: "AB+", alt: "Blood Group" },
+      { icon: "/blood.png", label: "A+", alt: "Blood Group" },
       { icon: "/date.png", label: "June 2025", alt: "Date" },
       { icon: "/mail.png", label: "user@gmail.com", alt: "Email" },
       { icon: "/phone.png", label: "+92 331-8899779", alt: "Phone" },
@@ -23,14 +23,14 @@ export default function TeacherProfile() {
 
   const cardData = [
     { imgSrc: "/singleAttendance.png", title: "90%", subtitle: "Attendance" },
-    { imgSrc: "/singleBranch.png", title: "2", subtitle: "Branches" },
-    { imgSrc: "/singleLesson.png", title: "6", subtitle: "Lessons" },
-    { imgSrc: "/singleClass.png", title: "6", subtitle: "Classes" },
+    { imgSrc: "/singleBranch.png", title: "6th", subtitle: "Grade" },
+    { imgSrc: "/singleLesson.png", title: "18", subtitle: "Lessons" },
+    { imgSrc: "/singleClass.png", title: "6 A", subtitle: "Class" },
   ];
 
   const shortcuts = [
-    { href: "/", label: "Classes", bgColor: "bg-primarylight" },
-    { href: "/", label: "Students", bgColor: "bg-secondarylight" },
+    { href: "/", label: "Results", bgColor: "bg-primarylight" },
+    { href: "/", label: "Teachers", bgColor: "bg-secondarylight" },
     { href: "/", label: "Lessons", bgColor: "bg-mainlight" },
     { href: "/", label: "Exams", bgColor: "bg-primarylight" },
     { href: "/", label: "Assignments", bgColor: "bg-secondarylight" },
@@ -46,8 +46,8 @@ export default function TeacherProfile() {
           <div className="bg-primary py-6 px-4 rounded-md flex-1 flex gap-4">
             <div className="w-1/3">
               <Image
-                src={teacherInfo.profileImage}
-                alt="Teacher Profile"
+                src={studentInfo.profileImage}
+                alt="Student Profile"
                 width={144}
                 height={144}
                 className="w-40 h-36 rounded-full object-cover"
@@ -55,14 +55,14 @@ export default function TeacherProfile() {
             </div>
             <div className="w-2/3 flex flex-col justify-between gap-4">
               <div className="flex items-center gap-4">
-                <h1 className="text-xl font-semibold">{teacherInfo.name}</h1>
+                <h1 className="text-xl font-semibold">{studentInfo.name}</h1>
                 {role === "admin" && (
                   <FormModal
-                    table="teacher"
+                    table="student"
                     type="update"
                     data={{
                       id: 1,
-                      username: "deanguerrero",
+                      username: "Moiz",
                       email: "deanguerrero@gmail.com",
                       password: "password",
                       firstName: "Dean",
@@ -77,11 +77,11 @@ export default function TeacherProfile() {
                   />
                 )}
                 <p className="text-sm text-gray-500">
-                  {teacherInfo.description}
+                  {studentInfo.description}
                 </p>
               </div>
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs font-medium">
-                {teacherInfo.details.map((detail, index) => (
+                {studentInfo.details.map((detail, index) => (
                   <div
                     key={index}
                     className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2"

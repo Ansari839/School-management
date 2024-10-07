@@ -8,33 +8,30 @@ export default function DashboardLayout({ children }) {
   const styles = {
     container: "h-screen flex",
     left: {
-      responsive: "w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%]", // Responsive widths
-      colors: "bg-white", // Color for the left side
+      base: "w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] bg-white", // Combined responsive widths and background color
       logo: "flex items-center justify-center lg:justify-start gap-2", // Flex layout for the logo
       logoText: "hidden lg:block text-slate-900 font-bold", // Hide text on small screens, show on larger
     },
     right: {
-      responsive: "w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] overflow-scroll flex flex-col", // Responsive widths
-      colors: "bg-gray-100", // Color for the right side
+      base: "w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] overflow-scroll flex flex-col bg-gray-100", // Combined responsive widths and background color
     },
   };
 
   return (
     <div className={styles.container}>
-      {/* Left */}
-      <div className={`${styles.left.responsive} ${styles.left.colors}`}>
+      {/* Left Section */}
+      <div className={styles.left.base}>
         <Link href="/" className={styles.left.logo}>
           <Image src={Logo} alt="School Logo" width={32} height={32} />
           <span className={styles.left.logoText}>Apna School</span>
         </Link>
         <Menu />
       </div>
-      {/* Right */}
-      <div className={`${styles.right.responsive} ${styles.right.colors}`}>
+      {/* Right Section */}
+      <div className={styles.right.base}>
         <Nav />
         {children}
       </div>
-      {/* Dashboard{children} */}
     </div>
   );
 }
