@@ -8,8 +8,8 @@ datasource db {
 }
 
 model Admin {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  username String @unique
+  id       String @id @map("_id") @default(auto()) @db.ObjectId
+  username String
 }
 
 model Student {
@@ -78,7 +78,7 @@ model Grade {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   level    Int       @unique
   students Student[]
-  classes  Class[] // Renamed from "classess" to "classes"
+  classes  Class[]
 }
 
 model Class {
