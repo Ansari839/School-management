@@ -13,7 +13,7 @@ module.exports = {
         primary: "var(--primary)",
         primarylight: "var(--primary-light)",
         secondary: "var(--secondary)",
-        secodarylight: "var(--secondary-light)",
+        secondarylight: "var(--secondary-light)",
         main: "var(--main)",
         mainlight: "var(--main-light)",
       },

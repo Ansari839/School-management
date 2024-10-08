@@ -1,5 +1,10 @@
 import Image from "next/image";
+import DashboardLayout from "./(dashboard)/layout";
 
 export default function Home() {
-  return <div>School Managments start ...</div>;
+  return (
+    <div>
+      <DashboardLayout />
+    </div>
+  );
 }

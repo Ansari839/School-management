@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
 export default function TableSearch() {
   const styles = {
@@ -7,15 +7,14 @@ export default function TableSearch() {
     search: {
       container:
         " md:flex flex items-center gap-2 text-xs rounded-full ring-[1.5px] ring-gray-300 px-2",
-      input: "w-[200px] p-2 bg-transparent outline-none",
+      input: "w-[200px] p-2 bg-transparent outline-none md:w-fit",
       iconSize: 14,
-    }
-    
+    },
   };
   return (
     <div>
-       {/* Search Bar */}
-       <div className={styles.search.container}>
+      {/* Search Bar */}
+      <div className={styles.search.container}>
         <Image
           src="/search.png"
           alt="search"
@@ -29,5 +28,5 @@ export default function TableSearch() {
         />
       </div>
     </div>
-  )
+  );
 }
