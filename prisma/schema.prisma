@@ -8,8 +8,8 @@ datasource db {
 }
 
 model Admin {
-  id       String @id @map("_id") @default(auto()) @db.ObjectId
-  username String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  username String @unique
 }
 
 model Student {
@@ -25,41 +25,32 @@ model Student {
   sex         UserSex
   createdAt   DateTime     @default(now())
   parentId    String       @db.ObjectId
+  parent      Parent       @relation(fields: [parentId], references: [id])
   classId     String       @db.ObjectId
+  class       Class        @relation(fields: [classId], references: [id])
   gradeId     String       @db.ObjectId
+  grade       Grade        @relation(fields: [gradeId], references: [id])
   attendances Attendance[]
   results     Result[]
   birthday    DateTime
-  Parent      Parent       @relation(fields: [parentId], references: [id])
-  Grade       Grade        @relation(fields: [gradeId], references: [id])
-  Class       Class        @relation(fields: [classId], references: [id])
 }
 
 model Teacher {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  username  String   @unique
-  name      String
-  surname   String
-  email     String?  @unique
-  phone     String?  @unique
-  address   String
-  img       String?
-  bloodType String
-  sex       UserSex
-  createdAt DateTime @default(now())
-  birthday  DateTime
-
-  // Explicit many-to-many relation
-  subjects TeacherSubject[]
-  lessons  Lesson[]
-}
-
-model TeacherSubject {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  teacherId String  @db.ObjectId
-  subjectId String  @db.ObjectId
-  Teacher   Teacher @relation(fields: [teacherId], references: [id])
-  Subject   Subject @relation(fields: [subjectId], references: [id])
+  id                String           @id @default(auto()) @map("_id") @db.ObjectId
+  username          String           @unique
+  name              String
+  surname           String
+  email             String?          @unique
+  phone             String?          @unique
+  address           String
+  img               String?
+  bloodType         String
+  sex               UserSex
+  createdAt         DateTime         @default(now())
+  birthday          DateTime
+  supervisedClasses Class[]          @relation("ClassSupervisor") // Opposite relation to 'Class' model
+  lessons           Lesson[]
+  teacherSubjects   TeacherSubject[] // Updated relation
 }
 
 model Parent {
@@ -77,30 +68,40 @@ model Parent {
 model Grade {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   level    Int       @unique
-  students Student[]
   classes  Class[]
+  students Student[]
 }
 
 model Class {
   id            String         @id @default(auto()) @map("_id") @db.ObjectId
   name          String         @unique
   capacity      Int
-  supervisorId  String?
+  supervisorId  String?        @db.ObjectId
+  supervisor    Teacher?       @relation("ClassSupervisor", fields: [supervisorId], references: [id]) // Unique relation name
   lessons       Lesson[]
   students      Student[]
   gradeId       String         @db.ObjectId
+  grade         Grade          @relation(fields: [gradeId], references: [id])
   events        Event[]
   announcements Announcement[]
-  Grade         Grade          @relation(fields: [gradeId], references: [id])
 }
 
 model Subject {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String @unique
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  name            String           @unique
+  lessons         Lesson[]
+  teacherSubjects TeacherSubject[] // Updated relation
+}
 
-  // Explicit many-to-many relation
-  teachers TeacherSubject[]
-  lessons  Lesson[]
+model TeacherSubject {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  teacherId String  @db.ObjectId
+  subjectId String  @db.ObjectId
+  teacher   Teacher @relation(fields: [teacherId], references: [id])
+  subject   Subject @relation(fields: [subjectId], references: [id])
+
+  // Ensure the combination is unique
+  @@unique([teacherId, subjectId]) // Unique constraint instead of composite primary key
 }
 
 model Lesson {
@@ -110,14 +111,14 @@ model Lesson {
   startTime   DateTime
   endTime     DateTime
   subjectId   String       @db.ObjectId
+  subject     Subject      @relation(fields: [subjectId], references: [id])
   classId     String       @db.ObjectId
+  class       Class        @relation(fields: [classId], references: [id])
   teacherId   String       @db.ObjectId
+  teacher     Teacher      @relation(fields: [teacherId], references: [id])
   exams       Exam[]
   assignments Assignment[]
   attendances Attendance[]
-  Teacher     Teacher      @relation(fields: [teacherId], references: [id])
-  Class       Class        @relation(fields: [classId], references: [id])
-  Subject     Subject      @relation(fields: [subjectId], references: [id])
 }
 
 model Exam {
@@ -126,8 +127,8 @@ model Exam {
   startTime DateTime
   endTime   DateTime
   lessonId  String   @db.ObjectId
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
   results   Result[]
-  Lesson    Lesson   @relation(fields: [lessonId], references: [id])
 }
 
 model Assignment {
@@ -136,19 +137,19 @@ model Assignment {
   startDate DateTime
   dueDate   DateTime
   lessonId  String   @db.ObjectId
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
   results   Result[]
-  Lesson    Lesson   @relation(fields: [lessonId], references: [id])
 }
 
 model Result {
   id           String      @id @default(auto()) @map("_id") @db.ObjectId
   score        Int
   examId       String?     @db.ObjectId
+  exam         Exam?       @relation(fields: [examId], references: [id])
   assignmentId String?     @db.ObjectId
+  assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   studentId    String      @db.ObjectId
-  Student      Student     @relation(fields: [studentId], references: [id])
-  Exam         Exam?       @relation(fields: [examId], references: [id])
-  Assignment   Assignment? @relation(fields: [assignmentId], references: [id])
+  student      Student     @relation(fields: [studentId], references: [id])
 }
 
 model Attendance {
@@ -156,9 +157,9 @@ model Attendance {
   date      DateTime
   present   Boolean
   studentId String   @db.ObjectId
+  student   Student  @relation(fields: [studentId], references: [id])
   lessonId  String   @db.ObjectId
-  Student   Student  @relation(fields: [studentId], references: [id])
-  Lesson    Lesson   @relation(fields: [lessonId], references: [id])
+  lesson    Lesson   @relation(fields: [lessonId], references: [id])
 }
 
 model Event {
@@ -168,7 +169,7 @@ model Event {
   startTime   DateTime
   endTime     DateTime
   classId     String?  @db.ObjectId
-  Class       Class?   @relation(fields: [classId], references: [id])
+  class       Class?   @relation(fields: [classId], references: [id])
 }
 
 model Announcement {
@@ -177,7 +178,7 @@ model Announcement {
   description String
   date        DateTime
   classId     String?  @db.ObjectId
-  Class       Class?   @relation(fields: [classId], references: [id])
+  class       Class?   @relation(fields: [classId], references: [id])
 }
 
 enum UserSex {
