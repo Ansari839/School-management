@@ -1,29 +1,16 @@
-// src/app/(dashboard)/list/teachers/page.jsx
-
-import prisma from "../../../lib/prisma.js";
+"use client"
 import FormModal from "@/app/components/FormModal";
 import Pagination from "@/app/components/Pagination";
 import Table from "@/app/components/Table";
 import TableSearch from "@/app/components/TableSearch";
+import { role, teachersData } from "@/app/lib/data";
+import prisma from "@/lib/prisma";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { role } from "@/app/lib/data";
+import React, { useEffect } from "react";
 
 export default async function TeacherList() {
-  // Fetch teacher data from Prisma
-  const teachers = await prisma.teacher.findMany({
-    include: {
-      teacherSubjects: {
-        include: {
-          subject: true, // Include the actual subject data
-        },
-      },
-      lessons: true,
-      supervisedClasses: true,
-    },
-  });
-  console.log(teachers);
   const columns = [
     { header: "Info", accessor: "info" },
     {
@@ -49,7 +36,7 @@ export default async function TeacherList() {
     },
     { header: "Actions", accessor: "action" },
   ];
-
+  
   const renderRow = (item) => {
     return (
       <tr
@@ -71,10 +58,10 @@ export default async function TeacherList() {
         </td>
         <td className="hidden md:table-cell">{item.teacherId}</td>
         <td className="hidden md:table-cell">
-          {item.teacherSubjects.map((ts) => ts.subject.name).join(", ")}
+          {item.subjects?.join(", ")}
         </td>
         <td className="hidden md:table-cell">
-          {item.supervisedClasses.map((cls) => cls.name).join(", ")}
+          {item.classes?.join(", ")}
         </td>
         <td className="hidden md:table-cell">{item.phone}</td>
         <td className="hidden md:table-cell">{item.address}</td>
@@ -96,6 +83,7 @@ export default async function TeacherList() {
 
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
+      {/* Top Bar */}
       <div className="flex items-center justify-between">
         <h1 className="hidden md:block text-lg font-semibold">All Teachers</h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
@@ -111,9 +99,11 @@ export default async function TeacherList() {
           </div>
         </div>
       </div>
+      {/* Table List */}
       <div>
-        <Table columns={columns} renderRow={renderRow} data={teachers} />
+        <Table columns={columns} renderRow={renderRow} data={teachersData} />
       </div>
+      {/* Pagination */}
       <div>
         <Pagination />
       </div>
